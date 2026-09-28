@@ -169,6 +169,11 @@ table.tight{font-size:14px}
 table.tight th,table.tight td{padding:8px 8px}
 .tnote{font-size:15px;color:var(--ink-2);margin:10px 0 0;line-height:1.55}
 .dash{color:var(--ink-3)}
+td.c,th.c{text-align:center}
+.ck{color:var(--benign);font-weight:600}
+.xx{color:var(--ink-3)}
+table.narrow{width:auto;min-width:0;margin:0 auto}
+table.narrow th,table.narrow td{padding-left:22px;padding-right:22px}
 
 /* Chart */
 .chart{margin:26px 0 0}
@@ -423,11 +428,11 @@ footer{margin:96px 0 48px;font-size:14.5px;color:var(--ink-3);line-height:1.6}
 
 <!-- ---------- Analysis ---------- -->
 <section id="analysis" class="wrap">
-  <h2>Where the signal comes from</h2>
+  <h2>Analysis</h2>
 
-  <h3 style="margin-top:20px">Refusal tokens are not enough</h3>
+  <h3 style="margin-top:20px">Why refusal tokens are not enough</h3>
   <div class="prose">
-    <p>Refusal tokens alone drop to 0.76 on Mistral and 0.71 on Qwen2-7B; adding the latent safety signals lifts every model above 0.91.</p>
+    <p>We investigate whether explicit refusal tokens (e.g., “Sorry”, “I”, “As”) alone are sufficient for harmful query discrimination. The contribution of refusal tokens varies substantially across LLMs, with notable degradation on Mistral and Qwen2-7B, whereas the transferred latent safety signals consistently improve classification accuracy across all six LLMs, with the largest gains on models where refusal tokens alone are least effective.</p>
   </div>
   <div class="chart" role="img" aria-label="Grouped bar chart. Average classification accuracy with refusal tokens only versus with latent safety signals added: Llama-3 0.919 to 0.986, Llama-2 0.927 to 0.984, Mistral 0.760 to 0.915, Qwen2-7B 0.712 to 0.975, Qwen3-8B 0.931 to 0.965, Gemma 0.939 to 0.970.">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 326" font-size="13">
@@ -483,10 +488,11 @@ footer{margin:96px 0 48px;font-size:14.5px;color:var(--ink-3);line-height:1.6}
   </div>
   <p class="tnote">Average accuracy over all benchmarks (excluding Hex-Phi and XSTest).</p>
 
-  <h3>Safety alignment creates it</h3>
+  <h3>How safety alignment enables LADE</h3>
   <div class="prose">
-    <p>Same pre-training, different alignment: Gemma-7B scores 0.68, Gemma-7B-it 0.94.</p>
+    <p>The average classification accuracy rises from 0.6836 on the base model Gemma-7B to 0.9396 on its instruction-tuned counterpart Gemma-7B-it. Since the two models share an identical pre-training backbone and differ only in the alignment stage, this provides direct evidence that LADE relies on signals introduced by safety alignment rather than on properties of the underlying language model.</p>
   </div>
+  <p class="muted" style="margin:0">Classification accuracy of LADE on harmful/benign query classification across the Gemma family.</p>
   <div class="tbl">
   <table>
     <thead>
@@ -502,23 +508,23 @@ footer{margin:96px 0 48px;font-size:14.5px;color:var(--ink-3);line-height:1.6}
   </table>
   </div>
 
-  <h3>It lives at the first token</h3>
+  <h3>Effect of token candidate position</h3>
   <div class="prose">
-    <p>Later positions carry less (0.92, 0.84) and adding them does not help, consistent with shallow safety alignment.</p>
+    <p>Classification performance decreases sharply with position, yielding accuracies of 0.9657, 0.9222, and 0.8449 when each position is used alone. This pattern is consistent with the shallow safety alignment, where safety alignment primarily adapts the generative distribution over only the first few output tokens. Combining the first position with later positions does not improve performance, indicating that the discriminative signal is concentrated at the first decoding step.</p>
   </div>
+  <p class="muted" style="margin:0">Token candidate ablation.</p>
   <div class="tbl">
-  <table>
-    <thead><tr><th>Candidate positions used</th><th class="n">Accuracy</th></tr></thead>
+  <table class="narrow">
+    <thead><tr><th class="c">First</th><th class="c">Second</th><th class="c">Third</th><th class="n">Accuracy</th></tr></thead>
     <tbody>
-      <tr><td>First</td><td class="n"><b>0.9657</b></td></tr>
-      <tr><td>Second</td><td class="n">0.9222</td></tr>
-      <tr><td>Third</td><td class="n">0.8449</td></tr>
-      <tr><td>First + second</td><td class="n">0.9651</td></tr>
-      <tr><td>First + second + third</td><td class="n">0.9523</td></tr>
+      <tr><td class="c ck">✓</td><td class="c xx">✗</td><td class="c xx">✗</td><td class="n"><b>0.9657</b></td></tr>
+      <tr><td class="c xx">✗</td><td class="c ck">✓</td><td class="c xx">✗</td><td class="n">0.9222</td></tr>
+      <tr><td class="c xx">✗</td><td class="c xx">✗</td><td class="c ck">✓</td><td class="n">0.8449</td></tr>
+      <tr><td class="c ck">✓</td><td class="c ck">✓</td><td class="c xx">✗</td><td class="n">0.9651</td></tr>
+      <tr><td class="c ck">✓</td><td class="c ck">✓</td><td class="c ck">✓</td><td class="n">0.9523</td></tr>
     </tbody>
   </table>
   </div>
-  <p class="tnote">Token position ablation on Llama-3-8B-Instruct.</p>
 
 </section>
 
