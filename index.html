@@ -116,7 +116,10 @@ sub{font-size:.72em;line-height:0;vertical-align:baseline;position:relative;top:
   font-size:13.5px;color:var(--ink-2);
 }
 .legend .halves{display:flex;gap:14px}
-.legend .halves span{text-align:center}
+.legend .halves span{text-align:center;display:flex;flex-direction:column;align-items:center;gap:7px}
+.legend .pill{font-style:normal;font-size:13.5px;font-weight:600;padding:3px 11px;border-radius:999px;line-height:1.4}
+.legend .pill.same{background:#e6e9ef;color:var(--ink-2)}
+.legend .pill.diff{background:var(--signal-soft);color:var(--signal)}
 .legend .halves span:first-child{flex:5}
 .legend .halves span:last-child{flex:4;padding-left:16px;color:var(--signal)}
 .schematic .cap{font-size:15px;color:var(--ink-2);line-height:1.55;margin:12px 0 0}
@@ -193,7 +196,8 @@ footer{margin:96px 0 48px;font-size:14.5px;color:var(--ink-3);line-height:1.6}
   .who{align-self:start}
   .verdict{text-align:left}
   .legend .halves{grid-row:1;flex-direction:column;gap:4px}
-  .legend .halves span{flex:none;text-align:left;padding-left:0}
+  .legend .halves span{flex:none;text-align:left;padding-left:0;align-items:flex-start}
+  .legend .halves span:last-child{padding-left:0}
   .legend > span:first-child, .legend > span:last-child{display:none}
   .steps{grid-template-columns:1fr;gap:14px}
   .panel{padding:20px 18px 18px}
@@ -220,7 +224,7 @@ footer{margin:96px 0 48px;font-size:14.5px;color:var(--ink-3);line-height:1.6}
     <span class="au"><a href="https://www.gaeng02.com/">Kyungsik Yang</a><sup>2</sup></span>,
     <span class="au"><a href="https://gaeunji.github.io/">Gaeun Ji</a><sup>2</sup></span>,
     <span class="au"><a href="https://vaidehi99.github.io/">Vaidehi Patil</a><sup>1</sup></span>,
-    <span class="au"><a href="https://www.aim-intelligence.com/">Haon Park</a><sup>3</sup></span>,
+    <span class="au"><a href="https://www.aim-intelligence.com/">Haon Park</a><sup>3</sup></span>,<br>
     <span class="au"><a href="https://cvlab.yonsei.ac.kr/">Bumsub Ham</a><sup>4</sup></span>,
     <span class="au"><a href="https://www.cs.unc.edu/~mbansal/">Mohit Bansal</a><sup>1</sup></span>,
     <span class="au"><a href="https://kdst.tistory.com/">Suhyun Kim</a><sup>2</sup></span>
@@ -299,7 +303,7 @@ footer{margin:96px 0 48px;font-size:14.5px;color:var(--ink-3);line-height:1.6}
 
     <div class="legend" aria-hidden="true">
       <span></span>
-      <div class="halves"><span>surface refusal tokens</span><span>latent safety signals</span></div>
+      <div class="halves"><span>surface refusal tokens<em class="pill same">&asymp; Hard to distinguish</em></span><span>latent safety signals<em class="pill diff">&ne; Clear separation</em></span></div>
       <span></span>
     </div>
   </div>
@@ -310,7 +314,7 @@ footer{margin:96px 0 48px;font-size:14.5px;color:var(--ink-3);line-height:1.6}
 <section id="abstract" class="wrap">
   <h2>Abstract</h2>
   <div class="prose">
-    <p>Large Language Models (LLMs) have advanced rapidly, raising growing concerns about their safety. Recent work has proposed various approaches to detect and defend against adversarial attacks including defense mechanisms at the decoding stage that leverage models' internal hidden states. However, existing decoding-stage defenses suffer from two limitations. First, they introduce a trade-off between safety and over-refusal, where strengthening safety degrades the model's helpfulness on benign queries. Second, many of these methods rely on internal hidden states and are thus restricted to specific architectures, incurring substantial overhead and limited generalization across models. To address these limitations, we introduce <strong>LADE</strong> (<strong>La</strong>tent Safety Signals for <strong>De</strong>fense), which leverages latent safety signals extracted by contrasting harmful and benign queries from dark knowledge (i.e., information carried by the output probability distribution beyond its argmax) in the first-token output probability distribution. Our key insight is that, beyond surface-level refusal tokens, the dark knowledge in the first-token distribution contains latent safety signals, defined as tokens whose probabilities differ sharply between harmful and benign queries. We empirically show that these signals consistently align across diverse LLMs, forming a model-agnostic direction that reflects an intrinsic property of safety-aligned language models. LADE consists of three components: (1) Extracting Latent Safety Signals from Dark Knowledge, which selects top-<em>k</em> safety-discriminative tokens from the first-token probability distribution; (2) Tokenizer Mapping, which maps these tokens across different tokenizers to enable model-agnostic application; and (3) kNN-based Discrimination, which classifies queries via a <em>k</em>-Nearest Neighbors search over the mapped tokens. Across six LLMs and multiple benchmarks, LADE remains robust against a wide range of jailbreak attacks and lowers attack success rates with minimal over-refusal.</p>
+    <p>Large Language Models (LLMs) have advanced rapidly, raising growing concerns about their safety. Recent work has proposed various approaches to detect and defend against adversarial attacks including defense mechanisms at the decoding stage that leverage models' internal hidden states. However, existing decoding-stage defenses suffer from two limitations. First, they introduce a trade-off between safety and over-refusal, where strengthening safety degrades the model's helpfulness on benign queries. Second, many of these methods rely on internal hidden states and are thus restricted to specific architectures, incurring substantial overhead and limited generalization across models. To address these limitations, we introduce <strong>LADE</strong> (<strong>La</strong>tent Safety Signals for <strong>De</strong>fense), which leverages latent safety signals extracted by contrasting harmful and benign queries from dark knowledge (i.e., information carried by the output probability distribution beyond its argmax) in the first-token output probability distribution. Our key insight is that, beyond surface-level refusal tokens, the dark knowledge in the first-token distribution contains latent safety signals, defined as tokens whose probabilities differ sharply between harmful and benign queries. We empirically show that these signals consistently align across the evaluated safety-aligned LLMs, forming a model-agnostic direction that emerges from safety alignment. LADE consists of three components: (1) Extracting Latent Safety Signals from Dark Knowledge, which selects top-<em>k</em> safety-discriminative tokens from the first-token probability distribution; (2) Tokenizer Mapping, which maps these tokens across different tokenizers to enable model-agnostic application; and (3) kNN-based Discrimination, which classifies queries via a <em>k</em>-Nearest Neighbors search over the mapped tokens. Across diverse LLMs and multiple benchmarks, LADE remains robust against a wide range of jailbreak attacks and lowers attack success rates while maintaining a competitive average safety-utility trade-off.</p>
   </div>
 
   <figure>
