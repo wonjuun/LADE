@@ -366,12 +366,13 @@ footer{margin:96px 0 48px;font-size:14.5px;color:var(--ink-3);line-height:1.6}
   <div class="tbl">
   <table>
     <thead>
-      <tr><th>Defense</th><th class="n">Llama-2-7B-Chat</th><th class="n">Llama-3-8B-Instruct</th><th class="n">Qwen2-7B-Instruct</th><th class="n">Qwen3-8B</th><th class="n">Gemma-7B-it</th><th class="n">Mistral-7B-Instruct-v0.3</th></tr>
+      <tr><th>Defense</th><th class="n">Llama-2-7B-<br>Chat</th><th class="n">Llama-3-8B-<br>Instruct</th><th class="n">Qwen2-7B-<br>Instruct</th><th class="n">Qwen3-8B</th><th class="n">Gemma-7B-it</th><th class="n">Mistral-7B-<br>Instruct-v0.3</th></tr>
     </thead>
     <tbody>
       <tr><td>No Defense</td><td class="n">6.80</td><td class="n">3.40</td><td class="n">20.60</td><td class="n">17.60</td><td class="n">47.40</td><td class="n">36.60</td></tr>
       <tr><td>Self-Reminder</td><td class="n"><b>0.00</b></td><td class="n"><b>0.00</b></td><td class="n">11.60</td><td class="n"><b>0.00</b></td><td class="n">31.60</td><td class="n">20.60</td></tr>
       <tr><td>SafeDecoding</td><td class="n"><b>0.00</b></td><td class="n">5.60</td><td class="n">9.40</td><td class="n">7.60</td><td class="n">50.80</td><td class="n">36.60</td></tr>
+      <tr><td>SafeInfer</td><td class="n">3.20</td><td class="n">3.40</td><td class="n">22.40</td><td class="n">18.40</td><td class="n">34.40</td><td class="n">22.60</td></tr>
       <tr><td>RDS</td><td class="n">12.40</td><td class="n">5.80</td><td class="n">25.40</td><td class="n">21.40</td><td class="n dash">–</td><td class="n dash">–</td></tr>
       <tr class="ours"><td>LADE</td><td class="n">2.20</td><td class="n">2.40</td><td class="n"><b>2.00</b></td><td class="n">5.80</td><td class="n"><b>15.80</b></td><td class="n"><b>2.20</b></td></tr>
     </tbody>
@@ -387,19 +388,36 @@ footer{margin:96px 0 48px;font-size:14.5px;color:var(--ink-3);line-height:1.6}
   <div class="tbl">
   <table>
     <thead>
-      <tr><th>Defense</th><th class="n">Llama-2-7B-Chat</th><th class="n">Llama-3-8B-Instruct</th><th class="n">Qwen2-7B-Instruct</th><th class="n">Qwen3-8B</th><th class="n">Gemma-7B-it</th><th class="n">Mistral-7B-Instruct-v0.3</th></tr>
+      <tr><th>Defense</th><th class="n">Llama-2-7B-<br>Chat</th><th class="n">Llama-3-8B-<br>Instruct</th><th class="n">Qwen2-7B-<br>Instruct</th><th class="n">Qwen3-8B</th><th class="n">Gemma-7B-it</th><th class="n">Mistral-7B-<br>Instruct-v0.3</th></tr>
     </thead>
     <tbody>
       <tr><td>No Defense</td><td class="n">24.20</td><td class="n">70.40</td><td class="n">4.80</td><td class="n">3.40</td><td class="n">99.60</td><td class="n">65.20</td></tr>
       <tr><td>Self-Reminder</td><td class="n">132.80</td><td class="n">18.40</td><td class="n"><b>3.60</b></td><td class="n">4.20</td><td class="n">68.40</td><td class="n"><b>12.80</b></td></tr>
       <tr><td>SafeDecoding</td><td class="n">189.40</td><td class="n">10.40</td><td class="n">110.40</td><td class="n">6.20</td><td class="n">101.80</td><td class="n">72.40</td></tr>
+      <tr><td>SafeInfer</td><td class="n">14.00</td><td class="n">9.60</td><td class="n">8.40</td><td class="n">9.20</td><td class="n">78.00</td><td class="n">29.40</td></tr>
       <tr><td>RDS</td><td class="n">5.00</td><td class="n">3.20</td><td class="n">10.60</td><td class="n">4.00</td><td class="n dash">–</td><td class="n dash">–</td></tr>
       <tr class="ours"><td>LADE</td><td class="n"><b>1.60</b></td><td class="n"><b>1.40</b></td><td class="n">5.40</td><td class="n"><b>3.00</b></td><td class="n"><b>6.00</b></td><td class="n">32.60</td></tr>
     </tbody>
   </table>
   </div>
+  <div class="tbl">
+  <table class="narrow">
+    <thead>
+      <tr><th>Defense</th><th class="n">Vicuna-13B-v1.3</th><th class="n">Llama-2-13B-Chat</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>No Defense</td><td class="n">9.60</td><td class="n">3.80</td></tr>
+      <tr><td>Self-Reminder</td><td class="n">9.20</td><td class="n">26.00</td></tr>
+      <tr><td>SafeDecoding</td><td class="n">20.60</td><td class="n">40.20</td></tr>
+      <tr><td>SafeInfer</td><td class="n dash">–</td><td class="n dash">–</td></tr>
+      <tr><td>RDS</td><td class="n">19.00</td><td class="n">2.40</td></tr>
+      <tr class="ours"><td>LADE</td><td class="n"><b>3.00</b></td><td class="n"><b>1.40</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="tnote">Two 13B LLMs are evaluated on harmful and benign queries only. SafeInfer is not evaluated on them.</p>
   <div class="prose">
-    <p>Best average on four of six models. On Llama-2-7B-Chat, Self-Reminder and SafeDecoding refuse 372 and 393 of 500 MMLU questions; LADE refuses none.</p>
+    <p>Best average on six of eight models, including both 13B models. On Llama-2-7B-Chat, Self-Reminder and SafeDecoding refuse 372 and 393 of 500 MMLU questions; LADE refuses none.</p>
   </div>
 
   <h3>The signals transfer across models</h3>
