@@ -161,7 +161,14 @@ th:first-child,td:first-child{padding-left:0}
 th:last-child,td:last-child{padding-right:0}
 thead th{font-weight:600;border-bottom:1.5px solid var(--ink)}
 thead tr.grp-head th{border-bottom:none;padding-bottom:2px;color:var(--ink-2);font-weight:400;font-size:14px;text-align:center}
-thead tr.grp-head th.span{border-bottom:1px solid var(--ink-3)}
+thead tr.grp-head th.span{background:linear-gradient(var(--ink-3),var(--ink-3)) no-repeat center bottom/calc(100% - 16px) 1px}
+thead tr.grp-head th[rowspan]{border-bottom:1.5px solid var(--ink);color:inherit;font-weight:600;font-size:inherit;text-align:left;padding-bottom:9px}
+thead tr.grp-head th.n[rowspan]{text-align:right}
+thead tr.grp-head + tr th:first-child{padding-left:12px}
+thead tr.grp-head + tr th:last-child{padding-right:12px}
+table.tight thead tr.grp-head th[rowspan]{padding-bottom:8px}
+table.tight thead tr.grp-head + tr th:first-child{padding-left:8px}
+table.tight thead tr.grp-head + tr th:last-child{padding-right:8px}
 tbody td{border-bottom:1px solid var(--line)}
 tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
 td.n,th.n{text-align:right}
@@ -434,8 +441,8 @@ footer{margin:96px 0 48px;font-size:14.5px;color:var(--ink-3);line-height:1.6}
   <div class="tbl">
   <table class="tight">
     <thead>
-      <tr class="grp-head"><th></th><th class="span" colspan="3">Harmful queries</th><th class="span" colspan="5">Jailbreak attacks</th><th class="span" colspan="4">Benign queries</th><th></th></tr>
-      <tr><th>Method</th><th class="n">AdvBench</th><th class="n">Hex-Phi<sup>†</sup></th><th class="n">StrongReject</th><th class="n">AutoDAN</th><th class="n">DeepInception</th><th class="n">GCG</th><th class="n">LIAR</th><th class="n">PAIR</th><th class="n">MMLU</th><th class="n">Alpaca</th><th class="n">GSM8K</th><th class="n">XSTest<sup>†</sup></th><th class="n">Held-out<br>avg.</th></tr>
+      <tr class="grp-head"><th rowspan="2">Method</th><th class="span" colspan="3">Harmful queries</th><th class="span" colspan="5">Jailbreak attacks</th><th class="span" colspan="4">Benign queries</th><th class="n" rowspan="2">Held-out<br>avg.</th></tr>
+      <tr><th class="n">AdvBench</th><th class="n">Hex-Phi<sup>†</sup></th><th class="n">StrongReject</th><th class="n">AutoDAN</th><th class="n">DeepInception</th><th class="n">GCG</th><th class="n">LIAR</th><th class="n">PAIR</th><th class="n">MMLU</th><th class="n">Alpaca</th><th class="n">GSM8K</th><th class="n">XSTest<sup>†</sup></th></tr>
     </thead>
     <tbody>
       <tr><td>Prompt-Guard-2-86M</td><td class="n">0.481</td><td class="n">0.110</td><td class="n">0.090</td><td class="n">0.727</td><td class="n">0.420</td><td class="n">0.613</td><td class="n">0.137</td><td class="n">0.280</td><td class="n"><b>1.000</b></td><td class="n"><b>0.999</b></td><td class="n"><b>1.000</b></td><td class="n"><b>1.000</b></td><td class="n">0.575</td></tr>
@@ -520,8 +527,8 @@ footer{margin:96px 0 48px;font-size:14.5px;color:var(--ink-3);line-height:1.6}
   <div class="tbl">
   <table>
     <thead>
-      <tr class="grp-head"><th></th><th class="span" colspan="3">Harmful queries</th><th class="span" colspan="4">Benign queries</th><th></th></tr>
-      <tr><th>Model</th><th class="n">AdvBench</th><th class="n">Hex-Phi</th><th class="n">StrongReject</th><th class="n">MMLU</th><th class="n">Alpaca</th><th class="n">GSM8K</th><th class="n">XSTest</th><th class="n">Avg.</th></tr>
+      <tr class="grp-head"><th rowspan="2">Model</th><th class="span" colspan="3">Harmful queries</th><th class="span" colspan="4">Benign queries</th><th class="n" rowspan="2">Avg.</th></tr>
+      <tr><th class="n">AdvBench</th><th class="n">Hex-Phi</th><th class="n">StrongReject</th><th class="n">MMLU</th><th class="n">Alpaca</th><th class="n">GSM8K</th><th class="n">XSTest</th></tr>
     </thead>
     <tbody>
       <tr><td>Gemma-7B (base)</td><td class="n">0.0000</td><td class="n">0.9400</td><td class="n">0.8019</td><td class="n">1.0000</td><td class="n">0.6600</td><td class="n">0.9940</td><td class="n">0.3896</td><td class="n">0.6836</td></tr>
