@@ -3,14 +3,14 @@
 # [NeurIPS 2026] Safeguarding LLMs via Model-Agnostic Latent Safety Signals from Dark Knowledge
 
 <div>
-    Wonjun Lee,
-    Kyungsik Yang,
-    Gaeun Ji,
-    Vaidehi Patil,
-    Haon Park,
-    Bumsub Ham,
-    Mohit Bansal,
-    Suhyun Kim
+    <a href="https://wonjuun.github.io/">Wonjun Lee</a>,
+    <a href="https://www.gaeng02.com/">Kyungsik Yang</a>,
+    <a href="https://gaeunji.github.io/">Gaeun Ji</a>,
+    <a href="https://vaidehi99.github.io/">Vaidehi Patil</a>,
+    <a href="https://www.aim-intelligence.com/">Haon Park</a>,
+    <a href="https://cvlab.yonsei.ac.kr/">Bumsub Ham</a>,
+    <a href="https://www.cs.unc.edu/~mbansal/">Mohit Bansal</a>,
+    <a href="https://kdst.tistory.com/">Suhyun Kim</a>
 </div>
 
 </div>
