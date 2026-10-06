@@ -27,7 +27,13 @@
 ## 🌟 Overview
 
 <p align="center">
-<img src="figs/overview.png" width="100%">
+<img src="figs/figure1.png" width="100%" alt="The key idea of LADE"><br>
+<sub><b>Figure 1.</b> The key idea of LADE. Latent safety signals (red) transfer across LLMs and separate harmful from benign queries where refusal tokens alone cannot.</sub>
+</p>
+
+<p align="center">
+<img src="figs/overview.png" width="100%" alt="Overview of LADE"><br>
+<sub><b>Figure 2.</b> Overview of LADE, from extracting latent safety signals to tokenizer mapping and kNN-based discrimination.</sub>
 </p>
 
 LADE (**La**tent Safety Signals for **De**fense) filters harmful queries before generation using only the first-token output distribution of the target LLM. It needs no hidden states, fine-tuning, or guard model.
