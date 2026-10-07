@@ -113,5 +113,13 @@ LADE/
 ## 📝 Citation
 
 ```bibtex
-
+@misc{lee2026safeguardingllmsmodelagnosticlatent,
+      title={Safeguarding LLMs via Model-Agnostic Latent Safety Signals from Dark Knowledge},
+      author={Wonjun Lee and Kyungsik Yang and Gaeun Ji and Vaidehi Patil and Haon Park and Bumsub Ham and Mohit Bansal and Suhyun Kim},
+      year={2026},
+      eprint={2610.07532},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR},
+      url={https://arxiv.org/abs/2610.07532},
+}
 ```
